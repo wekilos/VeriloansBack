@@ -11,6 +11,8 @@ const path = require("path");
 const EmployeeControllers = require("../controller/employeeController");
 const EmpStatusControllers = require("../controller/employeeStatusController");
 const StoreControllers = require("../controller/storeController");
+const ProductUnitControllers = require("../controller/productUnitController");
+const ProductControllers = require("../controller/productController");
 
 // // Routes
 
@@ -55,6 +57,36 @@ router.patch("/store/disActive/:id", StoreControllers.disActive);
 router.patch("/store/active/:id", StoreControllers.Active);
 router.patch("/store/delete/:id", StoreControllers.Delete);
 router.delete("/store/destroy/:id", StoreControllers.Destroy);
+
+// Products Unit Routes
+router.get(
+    "/pro/unit/all",
+    cache.get,
+    ProductUnitControllers.getAll,
+    cache.set
+);
+router.get(
+    "/pro/unit/:id",
+    cache.get,
+    ProductUnitControllers.getOne,
+    cache.set
+);
+router.post("/pro/unit/create", ProductUnitControllers.create);
+router.patch("/pro/unit/update", ProductUnitControllers.update);
+router.patch("/pro/unit/disActive/:id", ProductUnitControllers.disActive);
+router.patch("/pro/unit/active/:id", ProductUnitControllers.Active);
+router.patch("/pro/unit/delete/:id", ProductUnitControllers.Delete);
+router.delete("/pro/unit/destroy/:id", ProductUnitControllers.Destroy);
+
+// Product Routes
+router.get("/pro/all", cache.get, ProductControllers.getAll, cache.set);
+router.get("/pro/:id", cache.get, ProductControllers.getOne, cache.set);
+router.post("/pro/create", ProductControllers.create);
+router.patch("/pro/update", ProductControllers.update);
+router.patch("/pro/disActive/:id", ProductControllers.disActive);
+router.patch("/pro/active/:id", ProductControllers.Active);
+router.patch("/pro/delete/:id", ProductControllers.Delete);
+router.delete("/pro/destroy/:id", ProductControllers.Destroy);
 
 // For Token
 
